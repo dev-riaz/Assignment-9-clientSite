@@ -1,2 +1,11 @@
 @import "tailwindcss";
+@plugin "daisyui";
+@import "@heroui/styles"; 
+@import 'animate.css';
 
+.logo {
+  background: linear-gradient(135deg, #0F7A73 0%, #5A54F2 100%);
+}
+.banner {
+  background: linear-gradient(135deg, #EDF7F5 0%, #EEF3FA 50%, #F3F0FF 100%);
+}
