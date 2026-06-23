@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MdHealthAndSafety } from "react-icons/md";
 
 const Navbar = () => {
   return (
@@ -47,14 +48,10 @@ const Navbar = () => {
           </div>
           <div className="flex justify-center items-center gap-2">
             <div className="logo p-2 rounded-2xl">
-              <Image
-                src={"/assets/icons8-stethoscope-48.png"}
-                height={20}
-                width={20}
-                alt="logo"
-              ></Image>
+             
+              <MdHealthAndSafety className="text-white " />
             </div>
-            <h1>DocAppoint</h1>
+            <h1 className="text-2xl font-bold text-[#112B5F]">DocAppoint</h1>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
