@@ -4,9 +4,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
+import Link from "next/link";
 
 const DoctorsCard = ({ doctor }) => {
-  const { image, name, specialty, location, description, fee } = doctor;
+  const { _id, image, name, specialty, location, description, fee } = doctor;
 
   return (
     <motion.div
@@ -64,14 +65,15 @@ const DoctorsCard = ({ doctor }) => {
         <div className="flex items-center justify-between pt-2">
           <span className="font-bold text-lg text-[#0F7B6C]">{fee} Tk</span>
 
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="flex items-center gap-1.5 text-sm font-medium text-white bg-gradient-to-r from-[#0F7A73] to-[#5A54F2] px-4 py-2 rounded-full transition-opacity hover:opacity-90"
-          >
-            View Details
-            <FaLongArrowAltRight />
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+            <Link
+              href={`/allAppointments/${_id}`}
+              className="flex items-center gap-1.5 text-sm font-medium text-white bg-gradient-to-r from-[#0F7A73] to-[#5A54F2] px-4 py-2 rounded-full hover:opacity-90"
+            >
+              View Details
+              <FaLongArrowAltRight />
+            </Link>
+          </motion.div>
         </div>
       </motion.div>
     </motion.div>
