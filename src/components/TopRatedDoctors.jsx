@@ -1,14 +1,11 @@
+import { doctorsData } from "@/lib/data";
 import DoctorsCard from "./DoctorsCard";
-import { FaHeartbeat } from "react-icons/fa";
+
 
 const TopRatedDoctors = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_DOCTORS_URI}/allData`, {
-    cache: "no-store",
-  });
-
-  const data = await res.json();
+  const data = await doctorsData();
   const doctors = data.slice(0, 3);
-
+  
   return (
     <div className="bg-[#EAF3F3]">
       <div className="w-11/12 mx-auto py-8">
@@ -29,7 +26,6 @@ const TopRatedDoctors = async () => {
             Verified specialists with the highest patient satisfaction scores
             this month.
           </p>
-
         </div>
 
         {/* Cards */}

@@ -62,7 +62,7 @@ const DoctorsCard = ({ doctor }) => {
         </p>
 
         <div className="flex items-center justify-between pt-2">
-          <span className="font-bold text-lg text-[#0F7B6C]">Fee ৳{fee}</span>
+          <span className="font-bold text-lg text-[#0F7B6C]">{fee} Tk</span>
 
           <motion.button
             whileHover={{ scale: 1.04 }}
