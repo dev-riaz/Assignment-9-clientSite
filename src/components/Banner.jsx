@@ -114,7 +114,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="banner">
+    <div className="banner pb-8">
       <div className="w-11/12 mx-auto min-h-screen flex items-center">
         <div className="flex flex-col lg:flex-row-reverse items-center justify-between gap-10 w-full">
           {/* Right Side */}
