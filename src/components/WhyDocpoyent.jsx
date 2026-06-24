@@ -1,179 +1,129 @@
 "use client";
-const s = {
-  section: {
-    // padding: "4rem 1.5rem",
-    fontFamily: "sans-serif",
-    margin: "0 auto",
+
+import { motion } from "framer-motion";
+import {
+  FaUserCheck,
+  FaCalendarCheck,
+  FaLock,
+  FaHeadset,
+} from "react-icons/fa";
+
+const cards = [
+  {
+    icon: <FaUserCheck size={20} color="#0f6e56" />,
+    iconBg: "bg-[#e1f5ee]",
+    title: "Verified doctors",
+    desc: "Every specialist on our platform is license-verified and peer-reviewed before listing — so you always see a real expert.",
   },
-  header: {
-    textAlign: "center",
-    marginBottom: "2.5rem",
+  {
+    icon: <FaCalendarCheck size={20} color="#534ab7" />,
+    iconBg: "bg-[#eeedfe]",
+    title: "Instant appointment booking",
+    desc: "Browse available slots and confirm your appointment in under 60 seconds — no phone calls, no waiting in line.",
   },
-  badge: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: 6,
-    fontSize: 12,
-    fontWeight: 500,
-    color: "#0f6e56",
-    background: "#e1f5ee",
-    borderRadius: 20,
-    padding: "4px 12px",
-    marginBottom: "1rem",
+  {
+    icon: <FaLock size={20} color="#185fa5" />,
+    iconBg: "bg-[#e6f1fb]",
+    title: "Secure patient data",
+    desc: "Your health records are encrypted end-to-end and stored in compliance with HIPAA standards. Your data stays yours.",
   },
-  title: {
-    fontSize: 26,
-    fontWeight: 500,
-    color: "#111",
-    // margin: "0 0 0.5rem",
+  {
+    icon: <FaHeadset size={20} color="#854f0b" />,
+    iconBg: "bg-[#faeeda]",
+    title: "24/7 support",
+    desc: "Our care team is available around the clock to help with bookings, prescriptions, or any question you might have.",
   },
-  sub: {
-    fontSize: 14,
-    color: "#6b7280",
-    margin: "0 auto",
-    maxWidth: 400,
-    // lineHeight: 1.6,
-  },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: "1rem",
-    marginBottom: "1.5rem",
-  },
-  card: {
-    background: "#fff",
-    border: "1px solid rgba(0,0,0,0.08)",
-    borderRadius: 12,
-    padding: "1.25rem",
-    transition: "border-color 0.15s",
-    cursor: "default",
-  },
-  iconWrap: {
-    width: 40,
-    height: 40,
-    borderRadius: 8,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: "1rem",
-  },
-  cardTitle: {
-    fontSize: 15,
-    fontWeight: 500,
-    color: "#111",
-    margin: "0 0 6px",
-  },
-  cardDesc: {
-    fontSize: 13,
-    color: "#6b7280",
-    margin: 0,
-    lineHeight: 1.6,
-  },
-  statsRow: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    border: "1px solid #e5e7eb",
-    borderRadius: 12,
-    overflow: "hidden",
-  },
-  stat: {
-    padding: "1.25rem",
-    textAlign: "center",
-    background: "#fff",
-  },
-  statNum: {
-    fontSize: 22,
-    fontWeight: 500,
-    color: "#111",
-    margin: "0 0 2px",
-  },
-  statLabel: {
-    fontSize: 12,
-    color: "#6b7280",
-    margin: 0,
-  },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 25 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.12, ease: "easeOut" },
+  }),
 };
 
-const WhyDocpoyent = () => {
-  const cards = [
-    {
-      icon: "ti-shield-check",
-      iconBg: "#e1f5ee",
-      iconColor: "#0f6e56",
-      title: "Verified doctors",
-      desc: "Every specialist on our platform is license-verified and peer-reviewed before listing — so you always see a real expert.",
-    },
-    {
-      icon: "ti-calendar-check",
-      iconBg: "#eeedfe",
-      iconColor: "#534ab7",
-      title: "Instant appointment booking",
-      desc: "Browse available slots and confirm your appointment in under 60 seconds — no phone calls, no waiting in line.",
-    },
-    {
-      icon: "ti-lock",
-      iconBg: "#e6f1fb",
-      iconColor: "#185fa5",
-      title: "Secure patient data",
-      desc: "Your health records are encrypted end-to-end and stored in compliance with HIPAA standards. Your data stays yours.",
-    },
-    {
-      icon: "ti-headset",
-      iconBg: "#faeeda",
-      iconColor: "#854f0b",
-      title: "24/7 support",
-      desc: "Our care team is available around the clock to help with bookings, prescriptions, or any question you might have.",
-    },
-  ];
-
-
+const WhyDocAppoint = () => {
   return (
     <div className="bg-[#EAF3F3]">
-      <section style={s.section} className="w-11/12">
-        <div style={s.header}>
-          <div style={s.badge} className="mt-4">
+      <section className="w-11/12 mx-auto py-12 font-sans">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.div
+            variants={fadeUp}
+            custom={0}
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-[#0f6e56] bg-[#e1f5ee] rounded-full px-3 py-1 mb-4"
+          >
             <i
-              className="ti ti-rosette-discount-check"
-              style={{ fontSize: 13 }}
+              className="ti ti-rosette-discount-check text-[13px]"
               aria-hidden="true"
             />
             Trusted platform
-          </div>
-          <h2 style={s.title}>Why choose DocAppoint?</h2>
-          <p style={s.sub}>
+          </motion.div>
+
+          <motion.h2
+            variants={fadeUp}
+            custom={1}
+            className="text-2xl font-medium text-[#111] mb-2"
+          >
+            Why choose DocAppoint?
+          </motion.h2>
+
+          <motion.p
+            variants={fadeUp}
+            custom={2}
+            className="text-sm text-[#6b7280] max-w-sm mx-auto leading-relaxed"
+          >
             Everything you need to access quality healthcare — fast, safe, and
             hassle-free.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div style={s.grid}>
-          {cards.map((card) => (
-            <div
+        {/* Cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          {cards.map((card, i) => (
+            <motion.div
               key={card.title}
-              style={s.card}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.borderColor = "rgba(0,0,0,0.08)")
-              }
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              custom={i}
+              whileHover={{ y: -5, transition: { duration: 0.22 } }}
+              className="bg-white border border-black/[0.08] rounded-xl p-5 cursor-default transition-colors duration-150 hover:border-black/[0.18] hover:shadow-sm"
             >
-              <div style={{ ...s.iconWrap, background: card.iconBg }}>
-                <i
-                  className={`ti ${card.icon}`}
-                  style={{ fontSize: 20, color: card.iconColor }}
-                  aria-hidden="true"
-                />
-              </div>
-              <p style={s.cardTitle}>{card.title}</p>
-              <p style={s.cardDesc}>{card.desc}</p>
-            </div>
+              <motion.div
+                initial={{ scale: 0.6, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.35,
+                  delay: i * 0.12 + 0.18,
+                  ease: "backOut",
+                }}
+                className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 ${card.iconBg}`}
+              >
+                {card.icon}
+              </motion.div>
+
+              <p className="text-[15px] font-medium text-[#111] mb-1.5">
+                {card.title}
+              </p>
+              <p className="text-[13px] text-[#6b7280] leading-relaxed m-0">
+                {card.desc}
+              </p>
+            </motion.div>
           ))}
         </div>
-
       </section>
     </div>
   );
 };
 
-export default WhyDocpoyent;
+export default WhyDocAppoint;
