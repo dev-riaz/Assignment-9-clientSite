@@ -109,15 +109,33 @@ const Navbar = () => {
         {/* Navbar End */}
         <div className="navbar-end gap-2">
           {isPending ? (
-            // Avoid a flash of the wrong buttons while session is loading
             <div className="h-9 w-24" />
           ) : session ? (
-            <button
-              onClick={handleSignOut}
-              className="btn bg-red-500 hover:bg-red-600 text-white font-medium transition border-none rounded-full shadow-none hover:opacity-90"
-            >
-              LogOut<FiLogOut />
-            </button>
+            <div className="flex items-center gap-2">
+              {/* Avatar */}
+              <Link href="/profile">
+                {session.user?.image ? (
+                  <img
+                    src={session.user.image}
+                    alt={session.user.name}
+                    className="w-9 h-9 rounded-full object-cover border-2 border-[#0F7A73] cursor-pointer hover:opacity-90 transition"
+                  />
+                ) : (
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-r from-[#0F7A73] to-[#5A54F2] flex items-center justify-center text-white font-semibold text-sm cursor-pointer">
+                    {session.user?.name?.charAt(0).toUpperCase() ?? "U"}
+                  </div>
+                )}
+              </Link>
+
+              {/* Logout Button — unchanged */}
+              <button
+                onClick={handleSignOut}
+                className="btn bg-red-500 hover:bg-red-600 text-white font-medium transition border-none rounded-full shadow-none hover:opacity-90"
+              >
+                LogOut
+                <FiLogOut />
+              </button>
+            </div>
           ) : (
             <>
               <Link
