@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FiLogOut } from "react-icons/fi";
@@ -115,11 +116,14 @@ const Navbar = () => {
               {/* Avatar */}
               <Link href="/profile">
                 {session.user?.image ? (
-                  <img
-                    src={session.user.image}
-                    alt={session.user.name}
-                    className="w-9 h-9 rounded-full object-cover border-2 border-[#0F7A73] cursor-pointer hover:opacity-90 transition"
-                  />
+                  <div className="relative w-10 h-10 overflow-hidden rounded-full border-2 border-[#0F7A73]">
+                    <Image
+                      src={session.user.image}
+                      alt={session.user.name || "Profile"}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 ) : (
                   <div className="w-9 h-9 rounded-full bg-gradient-to-r from-[#0F7A73] to-[#5A54F2] flex items-center justify-center text-white font-semibold text-sm cursor-pointer">
                     {session.user?.name?.charAt(0).toUpperCase() ?? "U"}
