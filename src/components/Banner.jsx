@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { authClient } from "@/lib/auth-client";
+
 const styles = {
   wrapper: {
     display: "flex",
@@ -49,6 +51,8 @@ const Banner = () => {
   const offsetRef = useRef(0);
   const lastTimeRef = useRef(null);
   const rafRef = useRef(null);
+
+  const { data: session, isPending } = authClient.useSession();
 
   const W = 340,
     mid = 40,
@@ -200,19 +204,21 @@ const Banner = () => {
 
             <div className="flex gap-4">
               <Link
-                href="/"
+                href="/allAppointments"
                 className="btn  bg-gradient-to-r from-[#0F7A73] to-[#5A54F2] text-white border-none hover:opacity-90 rounded-full shadow-none"
               >
                 Browse Doctors
                 <FaLongArrowAltRight />
               </Link>
 
-              <Link
-                href="/"
-                className="btn  border-2 border-[#0F7A73] rounded-full shadow-none bg-white text-[#0F7A73]"
-              >
-                Create Free Account
-              </Link>
+              {!isPending && !session && (
+                <Link
+                  href="/register"
+                  className="btn  border-2 border-[#0F7A73] rounded-full shadow-none bg-white text-[#0F7A73]"
+                >
+                  Create Free Account
+                </Link>
+              )}
             </div>
           </div>
         </div>

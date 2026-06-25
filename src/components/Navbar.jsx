@@ -1,11 +1,15 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { FiLogOut } from "react-icons/fi";
 import { MdHealthAndSafety } from "react-icons/md";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -20,9 +24,14 @@ const Navbar = () => {
     return pathname.startsWith(path);
   };
 
+  const handleSignOut = async () => {
+    await authClient.signOut();
+    router.push("/login");
+  };
+
   return (
     <div className="bg-white shadow-sm">
-      <div className="navbar w-11/12 mx-auto">
+      <div className="navbar md:w-11/12 mx-auto w-full">
         {/* Navbar Start */}
         <div className="navbar-start">
           {/* Mobile Menu */}
@@ -99,19 +108,33 @@ const Navbar = () => {
 
         {/* Navbar End */}
         <div className="navbar-end gap-2">
-          <Link
-            href="/login"
-            className="btn border-2 border-[#0F7A73] rounded-full shadow-none bg-white text-[#0F7A73] hover:bg-[#0F7A73] hover:text-white"
-          >
-            Log In
-          </Link>
+          {isPending ? (
+            // Avoid a flash of the wrong buttons while session is loading
+            <div className="h-9 w-24" />
+          ) : session ? (
+            <button
+              onClick={handleSignOut}
+              className="btn bg-red-500 hover:bg-red-600 text-white font-medium transition border-none rounded-full shadow-none hover:opacity-90"
+            >
+              LogOut<FiLogOut />
+            </button>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="btn border-2 border-[#0F7A73] rounded-full shadow-none bg-white text-[#0F7A73] hover:bg-[#0F7A73] hover:text-white"
+              >
+                Log In
+              </Link>
 
-          <Link
-            href="/register"
-            className="btn bg-gradient-to-r from-[#0F7A73] to-[#5A54F2] text-white border-none rounded-full shadow-none hover:opacity-90"
-          >
-            Register
-          </Link>
+              <Link
+                href="/register"
+                className="btn bg-gradient-to-r from-[#0F7A73] to-[#5A54F2] text-white border-none rounded-full shadow-none hover:opacity-90"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
