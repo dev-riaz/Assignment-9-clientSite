@@ -76,7 +76,7 @@ export default function AppointmentBooking() {
 
       const result = await res.json();
 
-      console.log("Saved to DB:", result);
+      // console.log("Saved to DB:", result);
 
       setSubmitted(true);
       toast.success("Appointment booked successfully!");
@@ -103,12 +103,12 @@ export default function AppointmentBooking() {
 
   if (!doctor) {
     return (
-      <>
-        <Toaster position="top-center" />
-        <div className="min-h-screen flex justify-center items-center">
-          Loading...
+      <div className="min-h-screen bg-[#f5f7f7] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-[#e0ede9] border-t-[#0F6E56] rounded-full animate-spin"></div>
+          <p className="text-[#085041] font-medium text-sm">Loading...</p>
         </div>
-      </>
+      </div>
     );
   }
 
