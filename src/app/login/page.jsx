@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
@@ -46,6 +46,20 @@ const fadeRight = {
 export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const toastShown = useRef(false);
+
+  useEffect(() => {
+    const error = searchParams.get("error");
+
+    if (error && !toastShown.current) {
+      toastShown.current = true;
+      toast.error(error);
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete("error");
+      window.history.replaceState({}, "", url);
+    }
+  }, [searchParams]);
 
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
@@ -89,13 +103,18 @@ export default function LoginPage() {
         ...loginData,
       });
 
+      //   const { data:tokenData} = await authClient.token()
+      //   console.log(tokenData);
+
       if (error) {
         toast.error(error.message);
         return;
       }
 
       toast.success("Logged in successfully!");
-      router.push("/");
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
     } catch (error) {
       console.error(error);
 
@@ -238,10 +257,7 @@ export default function LoginPage() {
               custom={3}
               className="flex justify-end"
             >
-              <a
-                href="#"
-                className="text-blue-500 text-sm hover:underline"
-              >
+              <a href="#" className="text-blue-500 text-sm hover:underline">
                 Forgot Password?
               </a>
             </motion.div>
