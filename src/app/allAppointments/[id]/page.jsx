@@ -12,6 +12,7 @@ import {
   FaArrowLeft,
 } from "react-icons/fa";
 
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },

@@ -6,6 +6,7 @@ import { FiEdit2, FiUser, FiMail, FiX, FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 const ProfilePage = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;

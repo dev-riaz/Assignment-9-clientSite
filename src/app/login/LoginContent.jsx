@@ -103,9 +103,6 @@ const LoginContent = () => {
         ...loginData,
       });
 
-      // const { data:tokenData} = await authClient.token()
-      // console.log(tokenData);
-
       if (error) {
         toast.error(error.message);
         return;
@@ -124,6 +121,18 @@ const LoginContent = () => {
       toast.error(message);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Google Login Failed");
     }
   };
   return (
@@ -291,6 +300,7 @@ const LoginContent = () => {
 
             {/* Google Button */}
             <motion.button
+              onClick={handleGoogleLogin}
               variants={fadeUp}
               initial="hidden"
               animate="visible"

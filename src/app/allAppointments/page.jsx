@@ -2,6 +2,11 @@ import { Suspense } from "react";
 import AllAppointmentClient from "@/components/AllAppointmentClient";
 import { doctorsData } from "@/lib/data";
 
+export const metadata = {
+  title: "All-Appointment | DocAppoint",
+  description: "Book appointments with experienced doctors online.",
+};
+
 // ── Loading Spinner ──
 const DoctorsLoading = () => (
   <div className="bg-[#EAF3F3] min-h-screen flex flex-col items-center justify-center gap-4">
