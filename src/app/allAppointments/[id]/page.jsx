@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState, useRef } from "react";
@@ -57,7 +56,8 @@ const AnimatedStat = ({ value, suffix = "", label }) => {
   return (
     <div ref={ref} className="bg-white border rounded-xl p-4 text-center">
       <h2 className="text-xl font-bold">
-        {count}{suffix}
+        {count}
+        {suffix}
       </h2>
       <p className="text-sm text-gray-500">{label}</p>
     </div>
@@ -157,10 +157,13 @@ const DetailsPage = ({ params }) => {
               Share
             </button>
 
-            <button className="btn bg-[#0F6E56] text-white border-none">
+            <Link
+              href={`/booking/${_id}`}
+              className="btn text-white bg-[#085041] border-none"
+            >
               <FaCalendarPlus />
               Book Appointment
-            </button>
+            </Link>
           </div>
         </motion.div>
 
@@ -224,10 +227,13 @@ const DetailsPage = ({ params }) => {
             </p>
           </div>
 
-          <button className="btn bg-white text-[#085041] border-none">
+          <Link
+            href={`/booking/${_id}`}
+            className="btn bg-white text-[#085041] border-none"
+          >
             <FaCalendarPlus />
             Book Appointment
-          </button>
+          </Link>
         </motion.div>
       </div>
     </div>

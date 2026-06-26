@@ -14,12 +14,10 @@ export async function proxy(request) {
 
         return NextResponse.redirect(new URL('/login?error=Please login first', request.url))
     }
-    console.log(session);
-
+   
 }
 
 
-
 export const config = {
-    matcher: '/allAppointments/:id',
+    matcher: ['/allAppointments/:id','/dashboard']
 }

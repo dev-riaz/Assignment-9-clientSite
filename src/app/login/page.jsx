@@ -103,8 +103,8 @@ export default function LoginPage() {
         ...loginData,
       });
 
-      //   const { data:tokenData} = await authClient.token()
-      //   console.log(tokenData);
+        // const { data:tokenData} = await authClient.token()
+        // console.log(tokenData);
 
       if (error) {
         toast.error(error.message);
